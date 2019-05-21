@@ -3,9 +3,9 @@ import hashlib
 import re
 
 import lxml.html
-import requests
-
 from lxml import etree
+
+import requests
 
 from decryption import decrypt
 
@@ -36,23 +36,23 @@ def encode_string(s, iv, iv_len):
 
 def fetch_tile(path, token, x, y, z):
     sign_path = '%s=x%s-y%s-z%s-t%s' % (path, x, y, z, token)
-    signature = base64.b64encode(
-        encode_string(sign_path, IV, IV_LENGTH))[:-1].replace(b'+', b'_').replace(b'/', b'_').decode(
-        'utf-8')
+    encoded = encode_string(sign_path, IV, IV_LENGTH)
+    signature_bytes = base64.b64encode(encoded)[:-1].replace(b'+', b'_').replace(b'/', b'_')
+    signature = signature_bytes.decode('utf-8')
     image_url = 'https://lh3.googleusercontent.com/%s=x%s-y%s-z%s-t%s' % (path, x, y, z, signature)
     r = requests.get(image_url)
     return decrypt(r.content)
 
 
-if __name__ == '__main__':
-    url = 'https://artsandculture.google.com/asset/lady-with-an-ermine/HwHUpggDy_HxNQ'
+def load_tiles(url):
     r = requests.get(url)
     image_slug, image_id = url.split('?')[0].split('/')[-2:]
     image_name = '%s - %s' % (image_slug, image_id)
 
     tree = lxml.html.fromstring(r.text)
     image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
-    tile_info = [x.attrib for x in etree.fromstring(requests.get(image_url + '=g').content).xpath('//pyramid_level')]
+    meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
+    tile_info = [x.attrib for x in meta_info_tree.xpath('//pyramid_level')]
     path = image_url.split('/')[3]
     token = re.findall(r'"%s","([^"]+)"' % (image_url.split(':', 1)[1],), r.text)[0]
 
@@ -63,3 +63,7 @@ if __name__ == '__main__':
             fn = '%s %sx%sx%s.jpg' % (image_name, x, y, z)
             with open(fn, 'wb') as f:
                 f.write(fetch_tile(path, token, x, y, z))
+
+
+if __name__ == '__main__':
+    load_tiles('https://artsandculture.google.com/asset/lady-with-an-ermine/HwHUpggDy_HxNQ')

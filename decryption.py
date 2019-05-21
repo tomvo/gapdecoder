@@ -2,6 +2,7 @@
 # coding: utf-8
 from functools import reduce
 from operator import xor
+import struct
 
 magic_mapping = bytes.fromhex(
     '52096ad53036a538bf40a39e81f3d7fb7ce339829b2fff87348e4344c4dee9cb547b9432a6c2233dee4c950b42fac34e082ea16628d924b276'
@@ -35,19 +36,19 @@ magics = [bytes.fromhex(s) for s in (
 )]
 
 magic_xor = bytes.fromhex('71e70405353a778bfa6fbc30321b9592')
-magic_table = [
-    [[174, 197, 120, 173], [89, 174, 42, 115], [254, 127, 192, 69], [225, 25, 232, 181]],
-    [[171, 241, 244, 109], [247, 107, 82, 222], [167, 209, 234, 54], [31, 102, 40, 240]],
-    [[25, 212, 64, 1], [92, 154, 166, 179], [80, 186, 184, 232], [184, 183, 194, 198]],
-    [[78, 14, 113, 154], [69, 78, 230, 178], [12, 32, 30, 91], [232, 13, 122, 46]],
-    [[214, 77, 236, 243], [11, 64, 151, 40], [73, 110, 248, 233], [228, 45, 100, 117]],
-    [[236, 147, 50, 102], [221, 13, 123, 219], [66, 46, 111, 193], [173, 67, 156, 156]],
-    [[192, 158, 126, 185], [49, 158, 73, 189], [159, 35, 20, 26], [239, 109, 243, 93]],
-    [[231, 10, 222, 232], [241, 0, 55, 4], [174, 189, 93, 167], [112, 78, 231, 71]],
-    [[238, 254, 63, 245], [22, 10, 233, 236], [95, 189, 106, 163], [222, 243, 186, 224]],
-    [[195, 142, 37, 249], [248, 244, 214, 25], [73, 183, 131, 79], [129, 78, 208, 67]],
-    [[91, 99, 219, 17], [59, 122, 243, 224], [177, 67, 85, 86], [200, 249, 83, 12]]
-]
+magic_table = [bytes.fromhex(x) for x in (
+    'aec578ad59ae2a73fe7fc045e119e8b5',
+    'abf1f46df76b52dea7d1ea361f6628f0',
+    '19d440015c9aa6b350bab8e8b8b7c2c6',
+    '4e0e719a454ee6b20c201e5be80d7a2e',
+    'd64decf30b409728496ef8e9e42d6475',
+    'ec933266dd0d7bdb422e6fc1ad439c9c',
+    'c09e7eb9319e49bd9f23141aef6df35d',
+    'e70adee8f1003704aebd5da7704ee747',
+    'eefe3ff5160ae9ec5fbd6aa3def3bae0',
+    'c38e25f9f8f4d61949b7834f814ed043',
+    '5b63db113b7af3e0b1435556c8f9530c'
+)]
 
 
 def get_new_bytes(bytes, new_bytes, index):
@@ -60,11 +61,11 @@ def get_new_bytes(bytes, new_bytes, index):
     # Loop through magic table
     for n, row in enumerate(magic_table):
         if n > 1:  # Xor the split bytes with the magic lists
-            split_bytes = [bytearray(updated_split_byte(chunk, j) for j in range(4)) for chunk in split_bytes]
+            split_bytes = xor_bytes_by_magic_lists(split_bytes)
         if n > 0:  # Map the bytes
-            map_bytes(split_bytes)
+            split_bytes = map_bytes(split_bytes)
         # Xor again by the table index
-        xor_bytes_by_magic_table(split_bytes, row)
+        split_bytes = xor_bytes_by_magic_table(split_bytes, row)
 
     # Add the new bytes to the list
     for a in range(4):
@@ -72,32 +73,27 @@ def get_new_bytes(bytes, new_bytes, index):
     return new_bytes
 
 
+def xor_bytes_by_magic_lists(split_bytes):
+    return [[updated_split_byte(chunk, j) for j in range(4)] for chunk in split_bytes]
+
+
 def updated_split_byte(chunk, j):
     return reduce(xor, (magics[i - j][c] for i, c in enumerate(chunk)))
 
 
 def xor_bytes_by_magic_table(split_bytes, row):
-    for y in range(4):
-        for x in range(4):
-            # Xor by the row of the magic table
-            split_bytes[y][x] = split_bytes[y][x] ^ row[y][x]
+    return [[split_bytes[y][x] ^ row[y * 4 + x] for x in range(4)] for y in range(4)]
 
 
 def map_bytes(split_bytes):
-    # Set up 4x4 key matrix
-    keys = [[0 for _ in range(4)] for _ in range(4)]
-
-    for y in range(4):
-        for x in range(4):
-            # set keys to ~= split_bytes
-            keys[(y + x) % 4][x] = split_bytes[y][x]
-    for y in range(4):
-        for x in range(4):
-            # Set split bytes to keys and map to magic_mapping
-            split_bytes[y][x] = magic_mapping[keys[y][x]]
+    return [[magic_mapping[split_bytes[(y - x) % 4][x]] for x in range(4)] for y in range(4)]
 
 
 def get_replacement(bytes):
+    """
+    >>> bytes(get_replacement(b"0123456789abcdef"*2)).hex()
+    'a35fd5bfdb47815bcbe4b39e596a9358e289e389da48c0e709b26ecc081563ac'
+    """
     # Setup up list of new bytes
     new_bytes = []
     # Loop through chunks of 16
@@ -108,18 +104,12 @@ def get_replacement(bytes):
         xor = magic_xor if index == 0 else bytes
         # xor the new bytes
         for i in range(16):
-            new_bytes[index + i] = new_bytes[index + i] ^ xor[i]
+            new_bytes[index + i] ^= xor[i]
     return new_bytes
 
 
-def bytes_to_number(bytes, index):
-    # Add up the bytes, bitwise shifting from small to large
-    # E.g. '20, 01, 00, 00' -> 32 + (1 << 8) + (0 << 16) + (0 << 24) -> 288
-    total = bytes[index]
-    total += bytes[index + 1] << 8
-    total += bytes[index + 2] << 16
-    total += bytes[index + 3] << 24
-    return total
+def bytes_to_number(buffer, index):
+    return struct.unpack_from("<i", buffer, index)[0]
 
 
 def decrypt(image):
@@ -127,8 +117,8 @@ def decrypt(image):
     if image[:4] != b"\x0A\x0A\x0A\x0A":
         return image
 
-    # Convert the image to a list of ints (0 -> 255) (for insertion, maths etc)
-    byte_list = list(image)
+    # Convert the image to a array of bytes (0 -> 255) (for insertion, maths etc)
+    byte_list = bytearray(image)
 
     # Use the last 4 bytes to get the index of the bytes to be replaced
     index = bytes_to_number(byte_list, len(byte_list) - 4)

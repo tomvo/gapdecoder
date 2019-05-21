@@ -11,27 +11,18 @@ from decryption import decrypt
 
 IV = [123, 43, 78, 35, 222, 44, 197, 197]
 IV_LENGTH = 64
+IV_XORS = (54, 92)
 
 
 def encode_string(s, iv, iv_len):
-    prefix = []
-    postfix = []
-
-    for i in range(iv_len):
-        v = len(iv) > i and iv[i] or 0
-        prefix.append(v ^ 54)
-        postfix.append(v ^ 92)
-
-    h = hashlib.sha1()
-    h.update(bytearray(prefix))
-    h.update(bytearray(s.encode('utf-8')))
-
-    v = h.digest()
-    h = hashlib.sha1()
-    h.update(bytearray(postfix))
-    h.update(v)
-
-    return h.digest()
+    previous = s.encode('utf-8')
+    for xor in IV_XORS:
+        full_iv = iv + [0] * (iv_len - len(IV))
+        h = hashlib.sha1()
+        h.update(bytes(xor ^ x for x in full_iv))
+        h.update(previous)
+        previous = h.digest()
+    return previous
 
 
 def fetch_tile(path, token, x, y, z):

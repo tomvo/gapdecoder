@@ -23,6 +23,10 @@ magic_table = [
 
 
 def get_new_bytes(bytes, new_bytes, index):
+    """
+    >>> get_new_bytes(bytearray(b"0123456789abcdef"), [], 0)
+    [210, 184, 209, 186, 238, 125, 246, 208, 49, 139, 15, 174, 107, 113, 6, 202]
+    """
     # Split the bytes down into groups of 4
     split_bytes = [bytes[index + i:index + i + 4] for i in range(0, 16, 4)]
     # Xor by magic table

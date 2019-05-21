@@ -57,20 +57,14 @@ def get_new_bytes(bytes, new_bytes, index):
     """
     # Split the bytes down into groups of 4
     split_bytes = [bytes[index + i:index + i + 4] for i in range(0, 16, 4)]
-    # Xor by magic table
-    xor_bytes_by_magic_table(split_bytes, 0)
     # Loop through magic table
-    for row in range(1, 10):
-        # Map the bytes
-        map_bytes(split_bytes)
+    for n, row in enumerate(magic_table):
+        if n > 1:  # Xor the split bytes with the magic lists
+            split_bytes = [bytearray(updated_split_byte(chunk, j) for j in range(4)) for chunk in split_bytes]
+        if n > 0:  # Map the bytes
+            map_bytes(split_bytes)
         # Xor again by the table index
         xor_bytes_by_magic_table(split_bytes, row)
-
-        split_bytes = [[get_new_split_byte(chunk, j) for j in range(4)] for chunk in split_bytes]
-
-    # Map and xor
-    map_bytes(split_bytes)
-    xor_bytes_by_magic_table(split_bytes, 10)
 
     # Add the new bytes to the list
     for a in range(4):
@@ -78,7 +72,7 @@ def get_new_bytes(bytes, new_bytes, index):
     return new_bytes
 
 
-def get_new_split_byte(chunk, j):
+def updated_split_byte(chunk, j):
     return reduce(xor, (magics[i - j][c] for i, c in enumerate(chunk)))
 
 
@@ -86,7 +80,7 @@ def xor_bytes_by_magic_table(split_bytes, row):
     for y in range(4):
         for x in range(4):
             # Xor by the row of the magic table
-            split_bytes[y][x] = split_bytes[y][x] ^ magic_table[row][y][x]
+            split_bytes[y][x] = split_bytes[y][x] ^ row[y][x]
 
 
 def map_bytes(split_bytes):

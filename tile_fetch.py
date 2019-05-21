@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# coding: utf-8
+
 import base64
 import hashlib
 import re
@@ -15,6 +18,12 @@ IV_XORS = (54, 92)
 
 
 def encode_string(s, iv, iv_len):
+    """
+    >>> encode_string("hello", IV, IV_LENGTH).hex()
+    '871779485cab314d51fa8265fe3b4a96194ace2e'
+    >>> encode_string("&&&", IV, IV_LENGTH).hex()
+    '914239c61092138b4f3e90e4f2db3d33901bd094'
+    """
     previous = s.encode('utf-8')
     for xor in IV_XORS:
         full_iv = iv + [0] * (iv_len - len(IV))

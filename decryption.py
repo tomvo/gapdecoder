@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
+from functools import reduce
+from operator import xor
 
 magic_mapping = bytes.fromhex(
     '52096ad53036a538bf40a39e81f3d7fb7ce339829b2fff87348e4344c4dee9cb547b9432a6c2233dee4c950b42fac34e082ea16628d924b276'
@@ -64,15 +66,7 @@ def get_new_bytes(bytes, new_bytes, index):
         # Xor again by the table index
         xor_bytes_by_magic_table(split_bytes, row)
 
-        split_bytes = [
-            [
-                magics[(0 - j % 4)][split_bytes[i][0]] ^
-                magics[(1 - j % 4)][split_bytes[i][1]] ^
-                magics[(2 - j % 4)][split_bytes[i][2]] ^
-                magics[(3 - j % 4)][split_bytes[i][3]]
-                for j in range(4)
-            ] for i in range(4)
-        ]
+        split_bytes = [[get_new_split_byte(chunk, j) for j in range(4)] for chunk in split_bytes]
 
     # Map and xor
     map_bytes(split_bytes)
@@ -82,6 +76,10 @@ def get_new_bytes(bytes, new_bytes, index):
     for a in range(4):
         new_bytes += split_bytes[a]
     return new_bytes
+
+
+def get_new_split_byte(chunk, j):
+    return reduce(xor, (magics[i - j][c] for i, c in enumerate(chunk)))
 
 
 def xor_bytes_by_magic_table(split_bytes, row):

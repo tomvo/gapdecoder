@@ -54,7 +54,9 @@ def load_tiles(url):
     meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
     tile_info = [x.attrib for x in meta_info_tree.xpath('//pyramid_level')]
     path = image_url.split('/')[3]
-    token = re.findall(r'"%s","([^"]+)"' % (image_url.split(':', 1)[1],), r.text)[0]
+    part = image_url.split(':', 1)[1]
+    token_regex = r'"{}","([^"]+)"'.format(part)
+    token = re.findall(token_regex, r.text)[0]
 
     z = 7
     tile = tile_info[z]

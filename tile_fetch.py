@@ -23,7 +23,7 @@ def compute_url(path, token, x, y, z):
     'https://lh3.googleusercontent.com/wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ=x0-y0-z7-tHeJ3xylnSyyHPGwMZimI4EV3JP8'
     """
     sign_path = b'%s=x%d-y%d-z%d-t%s' % (path.encode('utf8'), x, y, z, token.encode('utf8'))
-    encoded = hmac.digest(IV, sign_path, 'sha1')
+    encoded = hmac.new(IV, sign_path, 'sha1').digest()
     signature_bytes = base64.b64encode(encoded, b'__')[:-1]
     signature = signature_bytes.decode('utf-8')
     return 'https://lh3.googleusercontent.com/%s=x%s-y%s-z%s-t%s' % (path, x, y, z, signature)

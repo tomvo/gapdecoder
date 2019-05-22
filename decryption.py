@@ -51,9 +51,9 @@ key_schedule = [bytes.fromhex(x) for x in (
 )]
 
 
-def get_new_bytes(bytes, new_bytes, index):
+def get_new_bytes(bytes, index):
     """
-    >>> get_new_bytes(bytearray(b"0123456789abcdef"), [], 0)
+    >>> get_new_bytes(bytearray(b"0123456789abcdef"), 0)
     [210, 184, 209, 186, 238, 125, 246, 208, 49, 139, 15, 174, 107, 113, 6, 202]
     """
     # Split the bytes down into groups of 4
@@ -68,9 +68,7 @@ def get_new_bytes(bytes, new_bytes, index):
         state_matrix_4x4 = add_round_key(state_matrix_4x4, key)
 
     # Add the new bytes to the list
-    for a in range(4):
-        new_bytes += state_matrix_4x4[a]
-    return new_bytes
+    return sum(state_matrix_4x4, [])
 
 
 def xor_bytes_by_magic_lists(split_bytes):
@@ -111,7 +109,7 @@ def get_replacement(bytes):
     # Loop through chunks of 16
     for index in range(0, len(bytes), 16):
         # Get the new bytes
-        new_bytes = get_new_bytes(bytes, new_bytes, index)
+        new_bytes += get_new_bytes(bytes, index)
         # Get the bytes to xor with
         xor = magic_xor if index == 0 else bytes
         # xor the new bytes

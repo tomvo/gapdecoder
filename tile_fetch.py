@@ -6,6 +6,8 @@ import hmac
 import re
 
 import lxml.html
+import argparse
+
 from lxml import etree
 
 import requests
@@ -35,28 +37,63 @@ def fetch_tile(path, token, x, y, z):
     return decrypt(r.content)
 
 
-def load_tiles(url):
+def load_image_info(url):
     r = requests.get(url)
+
     image_slug, image_id = url.split('?')[0].split('/')[-2:]
     image_name = '%s - %s' % (image_slug, image_id)
 
     tree = lxml.html.fromstring(r.text)
+
     image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
+
     meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
-    tile_info = [x.attrib for x in meta_info_tree.xpath('//pyramid_level')]
+    tile_info = [{k: int(v) for (k, v) in x.attrib.items()} for x in meta_info_tree.xpath('//pyramid_level')]
+
     path = image_url.split('/')[3]
     part = image_url.split(':', 1)[1]
+
     token_regex = r'"{}","([^"]+)"'.format(part)
     token = re.findall(token_regex, r.text)[0]
 
-    z = 7
-    tile = tile_info[z]
-    for x in range(int(tile['num_tiles_x'])):
-        for y in range(int(tile['num_tiles_y'])):
+    return tile_info, image_name, path, token
+
+
+def load_tiles(url, z):
+    tile_info, image_name, path, token = load_image_info(url)
+    try:
+        tile = tile_info[z]
+    except IndexError:
+        print('Unknown zoom-level %s' % (z, ))
+        quit(1)
+
+    total_tiles = tile['num_tiles_x'] * tile['num_tiles_y']
+    print('Downloading %i tiles' % (total_tiles, ))
+    i = 0
+    for x in range(tile['num_tiles_x']):
+        for y in range(tile['num_tiles_y']):
             fn = '%s %sx%sx%s.jpg' % (image_name, x, y, z)
             with open(fn, 'wb') as f:
                 f.write(fetch_tile(path, token, x, y, z))
+            i += 1
+            print('Downloaded %i of %i tiles' % (i, total_tiles), end='\r')
+    print('')
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Download all image tiles from Google Arts and Culture website')
+    parser.add_argument('url', type=str, help='an artsandculture.google.com url')
+    parser.add_argument('zoom', type=int, nargs='?', help='Zoom level to fetch, can be negative. Will print zoom levels if omitted')
+
+    args = parser.parse_args()
+    if args.zoom is not None:
+        load_tiles(args.url, args.zoom)
+    else:
+        tile_info, image_name, path, token = load_image_info(args.url)
+        print('Zoom levels:')
+        for i, level in enumerate(tile_info):
+            print(' %i %i x %i (%i tiles)' % (i, level['num_tiles_x'] * 512, level['num_tiles_y'] * 512, (level['num_tiles_x'] * level['num_tiles_y'])))
 
 
 if __name__ == '__main__':
-    load_tiles('https://artsandculture.google.com/asset/lady-with-an-ermine/HwHUpggDy_HxNQ')
+    main()

@@ -21,32 +21,28 @@ def bytes_to_number(buffer, index):
 
 
 def decrypt(image):
+    """
+    >>> x = "0A0A0A0A BABAC0C0 10000000 01010101 01010101 01010101 01010101 DEADBEAF 04000000"
+    >>> decrypt(bytes.fromhex(x)).hex()
+    'babac0c0ca251118030ff9aff186bdccbce26a4cdeadbeaf'
+    """
+    # The file is composed of a constant header, a body,
+    # and a last 4-byte word indicating the start of the encrypted part
+    encryption_marker, body, index = image[:4], image[4:-4], image[-4:]
+
     # return if the encryption marker isn't present at the start of the file
-    if image[:4] != b"\x0A\x0A\x0A\x0A":
+    if encryption_marker != b"\x0A\x0A\x0A\x0A":
         return image
 
-    # Convert the image to a array of bytes (0 -> 255) (for insertion, maths etc)
-    byte_list = bytearray(image)
-
     # Use the last 4 bytes to get the index of the bytes to be replaced
-    index = bytes_to_number(byte_list, len(byte_list) - 4)
-
-    # Trim out the encryption marker and info bytes
-    byte_list = byte_list[4:-4]
+    index = bytes_to_number(index, 0)
 
     # How many bytes to replace
-    replace_num = bytes_to_number(byte_list, index)
-
-    # Delete the 4 bytes at the start
-    del byte_list[index:index + 4]
-
-    # The bytes to replace
-    to_replace = byte_list[index:index + replace_num]
-
-    # Get the replacement bytes
-    replacement = aes_decrypt_buffer(to_replace)
-    # Replace the bytes!
-    byte_list[index:index + replace_num] = replacement
+    replace_count = bytes_to_number(body, index)
 
     # Convert back into bytes
-    return bytes(byte_list)
+    return b"".join((
+        body[:index],
+        aes_decrypt_buffer(body[index + 4:index + 4 + replace_count]),
+        body[index + 4 + replace_count:]
+    ))

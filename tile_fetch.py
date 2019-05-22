@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import base64
-import hashlib
+import hmac
 import re
 
 import lxml.html
@@ -12,27 +12,7 @@ import requests
 
 from decryption import decrypt
 
-IV = [123, 43, 78, 35, 222, 44, 197, 197]
-IV_LENGTH = 64
-IV_XORS = (54, 92)
-
-
-def encode_string(s, iv, iv_len):
-    """
-    >>> encode_string("hello", IV, IV_LENGTH).hex()
-    '871779485cab314d51fa8265fe3b4a96194ace2e'
-    >>> encode_string("&&&", IV, IV_LENGTH).hex()
-    '914239c61092138b4f3e90e4f2db3d33901bd094'
-    """
-    # return hashlib.pbkdf2_hmac('sha1', s.encode('utf8'), bytes(iv), 2)
-    previous = s.encode('utf-8')
-    for xor in IV_XORS:
-        full_iv = iv + [0] * (iv_len - len(IV))
-        h = hashlib.sha1()
-        h.update(bytes(xor ^ x for x in full_iv))
-        h.update(previous)
-        previous = h.digest()
-    return previous
+IV = bytes.fromhex("7b2b4e23de2cc5c5")
 
 
 def compute_url(path, token, x, y, z):
@@ -42,8 +22,8 @@ def compute_url(path, token, x, y, z):
     >>> compute_url(path, token, 0, 0, 7)
     'https://lh3.googleusercontent.com/wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ=x0-y0-z7-tHeJ3xylnSyyHPGwMZimI4EV3JP8'
     """
-    sign_path = '%s=x%s-y%s-z%s-t%s' % (path, x, y, z, token)
-    encoded = encode_string(sign_path, IV, IV_LENGTH)
+    sign_path = b'%s=x%d-y%d-z%d-t%s' % (path.encode('utf8'), x, y, z, token.encode('utf8'))
+    encoded = hmac.digest(IV, sign_path, 'sha1')
     signature_bytes = base64.b64encode(encoded, b'__')[:-1]
     signature = signature_bytes.decode('utf-8')
     return 'https://lh3.googleusercontent.com/%s=x%s-y%s-z%s-t%s' % (path, x, y, z, signature)

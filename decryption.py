@@ -49,7 +49,7 @@ def aes_encrypt_block(block, index):
     'd2b8d1baee7df6d0318b0fae6b7106ca'
     """
     # Split the bytes down into groups of 4
-    state_matrix_4x4 = [block[index + i:index + i + 4] for i in range(0, 16, 4)]
+    state_matrix_4x4 = [bytes(block[index + i:index + i + 4]) for i in range(0, 16, 4)]
     # Loop through magic table
     for n, key in enumerate(key_schedule):
         if n > 1:  # Xor the split bytes with the magic lists

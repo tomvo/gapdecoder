@@ -62,7 +62,7 @@ def load_image_info(url):
     return tile_info, (tile_width, tile_height), image_name, path, token
 
 
-def load_tiles(url, z=6):
+def load_tiles(url, z=-1):
     tile_info, tile_size, image_name, path, token = load_image_info(url)
 
     if z >= len(tile_info):

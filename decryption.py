@@ -43,13 +43,13 @@ key_schedule = [bytes.fromhex(x) for x in (
 )]
 
 
-def get_new_bytes(bytes, index):
+def aes_encrypt_block(block, index):
     """
-    >>> get_new_bytes(bytearray(b"0123456789abcdef"), 0)
-    [210, 184, 209, 186, 238, 125, 246, 208, 49, 139, 15, 174, 107, 113, 6, 202]
+    >>> aes_encrypt_block(bytearray(b"0123456789abcdef"), 0).hex()
+    'd2b8d1baee7df6d0318b0fae6b7106ca'
     """
     # Split the bytes down into groups of 4
-    state_matrix_4x4 = [bytes[index + i:index + i + 4] for i in range(0, 16, 4)]
+    state_matrix_4x4 = [block[index + i:index + i + 4] for i in range(0, 16, 4)]
     # Loop through magic table
     for n, key in enumerate(key_schedule):
         if n > 1:  # Xor the split bytes with the magic lists
@@ -60,7 +60,7 @@ def get_new_bytes(bytes, index):
         state_matrix_4x4 = add_round_key(state_matrix_4x4, key)
 
     # Add the new bytes to the list
-    return sum(state_matrix_4x4, [])
+    return b''.join(map(bytes, state_matrix_4x4))
 
 
 def inv_mix_columns(split_bytes):
@@ -93,15 +93,15 @@ def inv_shift_rows_and_inv_sub_bytes(split_bytes):
 
 def get_replacement(bytes):
     """
-    >>> bytes(get_replacement(b"0123456789abcdef"*2)).hex()
+    >>> get_replacement(b"0123456789abcdef"*2).hex()
     'a35fd5bfdb47815bcbe4b39e596a9358e289e389da48c0e709b26ecc081563ac'
     """
     # Setup up list of new bytes
-    new_bytes = []
+    new_bytes = bytearray()
     # Loop through chunks of 16
     for index in range(0, len(bytes), 16):
         # Get the new bytes
-        new_bytes += get_new_bytes(bytes, index)
+        new_bytes += aes_encrypt_block(bytes, index)
         # Get the bytes to xor with
         xor = magic_xor if index == 0 else bytes
         # xor the new bytes

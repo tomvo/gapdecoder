@@ -64,10 +64,9 @@ def load_image_info(url):
 
 def load_tiles(url, z=6):
     tile_info, tile_size, image_name, path, token = load_image_info(url)
-    try:
-        tile = tile_info[z]
-    except IndexError:
-        print('Unknown zoom-level %s' % (z,))
+
+    if z > len(tile_info) or z < 0:
+        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(tile_info)))
         quit(1)
 
     tile = tile_info[z]

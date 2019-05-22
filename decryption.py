@@ -16,10 +16,6 @@ def aes_decrypt_buffer(buffer):
     return cipher.decrypt(buffer)
 
 
-def bytes_to_number(buffer, index):
-    return struct.unpack_from("<i", buffer, index)[0]
-
-
 def split_buffer_in_3(buf, idx1, idx2):
     return buf[:idx1], buf[idx1:idx2], buf[idx2:]
 
@@ -32,19 +28,21 @@ def decrypt(image):
     """
     # The file is composed of a constant header, a body,
     # and a last 4-byte word indicating the start of the encrypted part
-    encryption_marker, body, index = split_buffer_in_3(image, 4, -4)
+    encryption_marker, body, index_bytes = split_buffer_in_3(image, 4, -4)
 
     # return if the encryption marker isn't present at the start of the file
     if encryption_marker != b"\x0A\x0A\x0A\x0A":
         return image
 
     # Use the last 4 bytes to get the index of the bytes to be replaced
-    index = bytes_to_number(index, 0)
+    (index,) = struct.unpack("<i", index_bytes)
+
+    clear_prefix, replace_count_bytes, rest = split_buffer_in_3(body, index, index + 4)
 
     # How many bytes to replace
-    replace_count = bytes_to_number(body, index)
+    (replace_count,) = struct.unpack("<i", replace_count_bytes)
 
-    clear_prefix, encrypted, clear_suffix = split_buffer_in_3(body, index + 4, index + 4 + replace_count)
+    _, encrypted, clear_suffix = split_buffer_in_3(rest, 0, replace_count)
 
     # Convert back into bytes
-    return b"".join((clear_prefix[:-4], aes_decrypt_buffer(encrypted), clear_suffix))
+    return b"".join((clear_prefix, aes_decrypt_buffer(encrypted), clear_suffix))

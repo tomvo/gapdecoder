@@ -4,7 +4,7 @@ from functools import reduce
 from operator import xor
 import struct
 
-magic_mapping = bytes.fromhex(
+aes_inverse_s_box = bytes.fromhex(
     '52096ad53036a538bf40a39e81f3d7fb7ce339829b2fff87348e4344c4dee9cb547b9432a6c2233dee4c950b42fac34e082ea16628d924b276'
     '5ba2496d8bd12572f8f66486689816d4a45ccc5d65b6926c704850fdedb9da5e154657a78d9d8490d8ab008cbcd30af7e45805b8b34506d02c'
     '1e8fca3f0f02c1afbd0301138a6b3a9111414f67dcea97f2cfcef0b4e67396ac7422e7ad3585e2f937e81c75df6e47f11a711d29c5896fb762'
@@ -36,7 +36,7 @@ magics = [bytes.fromhex(s) for s in (
 )]
 
 magic_xor = bytes.fromhex('71e70405353a778bfa6fbc30321b9592')
-magic_table = [bytes.fromhex(x) for x in (
+key_schedule = [bytes.fromhex(x) for x in (
     'aec578ad59ae2a73fe7fc045e119e8b5',
     'abf1f46df76b52dea7d1ea361f6628f0',
     '19d440015c9aa6b350bab8e8b8b7c2c6',
@@ -57,19 +57,19 @@ def get_new_bytes(bytes, new_bytes, index):
     [210, 184, 209, 186, 238, 125, 246, 208, 49, 139, 15, 174, 107, 113, 6, 202]
     """
     # Split the bytes down into groups of 4
-    split_bytes = [bytes[index + i:index + i + 4] for i in range(0, 16, 4)]
+    state_matrix_4x4 = [bytes[index + i:index + i + 4] for i in range(0, 16, 4)]
     # Loop through magic table
-    for n, row in enumerate(magic_table):
+    for n, key in enumerate(key_schedule):
         if n > 1:  # Xor the split bytes with the magic lists
-            split_bytes = xor_bytes_by_magic_lists(split_bytes)
+            state_matrix_4x4 = xor_bytes_by_magic_lists(state_matrix_4x4)
         if n > 0:  # Map the bytes
-            split_bytes = map_bytes(split_bytes)
+            state_matrix_4x4 = inv_shift_rows_and_inv_sub_bytes(state_matrix_4x4)
         # Xor again by the table index
-        split_bytes = xor_bytes_by_magic_table(split_bytes, row)
+        state_matrix_4x4 = add_round_key(state_matrix_4x4, key)
 
     # Add the new bytes to the list
     for a in range(4):
-        new_bytes += split_bytes[a]
+        new_bytes += state_matrix_4x4[a]
     return new_bytes
 
 
@@ -85,20 +85,20 @@ def updated_split_byte(chunk, j):
     return reduce(xor, (magics[i - j][c] for i, c in enumerate(chunk)))
 
 
-def xor_bytes_by_magic_table(split_bytes, row):
+def add_round_key(split_bytes, key):
     """
-    >>> xor_bytes_by_magic_table([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], magic_table[0])
+    >>> add_round_key([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], key_schedule[0])
     [[175, 199, 123, 169], [92, 168, 45, 123], [247, 117, 203, 73], [236, 23, 231, 165]]
     """
-    return [[split_bytes[y][x] ^ row[y * 4 + x] for x in range(4)] for y in range(4)]
+    return [[split_bytes[y][x] ^ key[y * 4 + x] for x in range(4)] for y in range(4)]
 
 
-def map_bytes(split_bytes):
+def inv_shift_rows_and_inv_sub_bytes(split_bytes):
     """
-    >>> map_bytes([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+    >>> inv_shift_rows_and_inv_sub_bytes([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
     [[9, 215, 158, 191], [54, 106, 251, 129], [64, 165, 213, 124], [243, 163, 56, 48]]
     """
-    return [[magic_mapping[split_bytes[y - x][x]] for x in range(4)] for y in range(4)]
+    return [[aes_inverse_s_box[split_bytes[y - x][x]] for x in range(4)] for y in range(4)]
 
 
 def get_replacement(bytes):

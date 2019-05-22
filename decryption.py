@@ -75,8 +75,8 @@ def get_new_bytes(bytes, new_bytes, index):
 
 def xor_bytes_by_magic_lists(split_bytes):
     """
-    >>> xor_bytes_by_magic_table([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], magic_table[0])
-    [[175, 199, 123, 169], [92, 168, 45, 123], [247, 117, 203, 73], [236, 23, 231, 165]]
+    >>> xor_bytes_by_magic_lists([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+    [[43, 60, 33, 50], [103, 80, 125, 70], [35, 52, 41, 58], [255, 136, 197, 174]]
     """
     return [[updated_split_byte(chunk, j) for j in range(4)] for chunk in split_bytes]
 

@@ -74,6 +74,10 @@ def get_new_bytes(bytes, new_bytes, index):
 
 
 def xor_bytes_by_magic_lists(split_bytes):
+    """
+    >>> xor_bytes_by_magic_table([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], magic_table[0])
+    [[175, 199, 123, 169], [92, 168, 45, 123], [247, 117, 203, 73], [236, 23, 231, 165]]
+    """
     return [[updated_split_byte(chunk, j) for j in range(4)] for chunk in split_bytes]
 
 
@@ -82,11 +86,19 @@ def updated_split_byte(chunk, j):
 
 
 def xor_bytes_by_magic_table(split_bytes, row):
+    """
+    >>> xor_bytes_by_magic_table([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], magic_table[0])
+    [[175, 199, 123, 169], [92, 168, 45, 123], [247, 117, 203, 73], [236, 23, 231, 165]]
+    """
     return [[split_bytes[y][x] ^ row[y * 4 + x] for x in range(4)] for y in range(4)]
 
 
 def map_bytes(split_bytes):
-    return [[magic_mapping[split_bytes[(y - x) % 4][x]] for x in range(4)] for y in range(4)]
+    """
+    >>> map_bytes([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]])
+    [[9, 215, 158, 191], [54, 106, 251, 129], [64, 165, 213, 124], [243, 163, 56, 48]]
+    """
+    return [[magic_mapping[split_bytes[y - x][x]] for x in range(4)] for y in range(4)]
 
 
 def get_replacement(bytes):

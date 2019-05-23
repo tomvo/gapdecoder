@@ -4,6 +4,7 @@
 import base64
 import hmac
 import re
+import shutil
 from pathlib import Path
 
 from PIL import Image
@@ -81,11 +82,14 @@ def load_tiles(url, z=-1):
 
     img = Image.new(mode="RGB", size=(width, height))
 
+    tiles_dir = Path(image_name)
+    tiles_dir.mkdir(exist_ok=True)
+
     for x in range(num_tiles_x):
         for y in range(num_tiles_y):
             percent_complete = 100 * (y + x * num_tiles_y) // (num_tiles_y * num_tiles_x)
             print("Downloading: {}%".format(percent_complete), end='\r')
-            file_path = Path() / ('%s %sx%sx%s.jpg' % (image_name, x, y, z))
+            file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
             if not file_path.exists():
                 tile_bytes = fetch_tile(path, token, x, y, z)
                 file_path.write_bytes(tile_bytes)
@@ -94,6 +98,7 @@ def load_tiles(url, z=-1):
     print("Downloaded all tiles")
     final_image_filename = image_name + '.jpg'
     img.save(final_image_filename)
+    shutil.rmtree(tiles_dir)
     print("Saved the result as " + final_image_filename)
 
 

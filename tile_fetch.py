@@ -44,15 +44,18 @@ class ImageInfo(object):
         r = requests.get(url)
 
         url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
-        image_slug, image_id = url_path.split('/')[-2:]
-        self.image_name = '%s - %s' % (image_slug, image_id)
+        self.image_slug, image_id = url_path.split('/')[-2:]
+        self.image_name = '%s - %s' % (self.image_slug, image_id)
 
         tree = lxml.html.fromstring(r.text)
         image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
         meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
         self.tile_width = int(meta_info_tree.attrib['tile_width'])
         self.tile_height = int(meta_info_tree.attrib['tile_height'])
-        self.tile_info = [ZoomLevelInfo(x.attrib, self) for x in meta_info_tree.xpath('//pyramid_level')]
+        self.tile_info = [
+            ZoomLevelInfo(self, i, attrs.attrib)
+            for i, attrs in enumerate(meta_info_tree.xpath('//pyramid_level'))
+        ]
 
         self.path = image_url.split('/')[3]
 
@@ -60,9 +63,16 @@ class ImageInfo(object):
         token_regex = r'"{}","([^"]+)"'.format(part)
         self.token = re.findall(token_regex, r.text)[0]
 
+    def __repr__(self):
+        return '{} - zoom levels:\n{}'.format(
+            self.image_slug,
+            '\n'.join(map(str, self.tile_info))
+        )
+
 
 class ZoomLevelInfo(object):
-    def __init__(self, attrs, img_info):
+    def __init__(self, img_info, level_num, attrs):
+        self.num = level_num
         self.num_tiles_x = int(attrs['num_tiles_x'])
         self.num_tiles_y = int(attrs['num_tiles_y'])
         self.empty_x = int(attrs['empty_pels_x'])
@@ -79,6 +89,10 @@ class ZoomLevelInfo(object):
     @property
     def total_tiles(self):
         return self.num_tiles_x * self.num_tiles_y
+
+    def __repr__(self):
+        return 'level {level.num:2d}: {level.size[0]:6d} x {level.size[1]:6d} ({level.total_tiles:6d} tiles)'.format(
+            level=self)
 
 
 def load_tiles(url, z=-1):
@@ -123,14 +137,10 @@ def main():
 
     args = parser.parse_args()
 
-    if args.zoom is not None:
-        load_tiles(args.url, args.zoom)
+    if args.zoom is None:
+        print(ImageInfo(args.url))
     else:
-        info = ImageInfo(args.url)
-        print('Zoom levels:')
-        for i, level in enumerate(info.tile_info):
-            print('{i:2d}: {level.size[0]:6d} x {level.size[1]:6d} ({level.total_tiles:6d} tiles)'.format(
-                i=i, level=level))
+        load_tiles(args.url, args.zoom)
 
 
 if __name__ == '__main__':

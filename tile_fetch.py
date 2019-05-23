@@ -95,6 +95,7 @@ class ZoomLevelInfo(object):
 
 
 def load_tiles(url, z=-1):
+    print("Downloading image meta-information...")
     info = ImageInfo(url)
 
     if z >= len(info.tile_info):
@@ -112,14 +113,14 @@ def load_tiles(url, z=-1):
     for x in range(level.num_tiles_x):
         for y in range(level.num_tiles_y):
             percent_complete = 100 * (y + x * level.num_tiles_y) // level.total_tiles
-            print("Downloading: {}%".format(percent_complete), end='\r')
+            print("Downloading tiles: {:3d}%".format(percent_complete), end='\r')
             file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
             if not file_path.exists():
                 tile_bytes = info.fetch_tile(x, y, z)
                 file_path.write_bytes(tile_bytes)
             tile_img = Image.open(file_path)
             img.paste(tile_img, (x * info.tile_width, y * info.tile_height))
-    print("Downloaded all tiles")
+    print("Downloaded all tiles. Saving...")
     final_image_filename = info.image_name + '.jpg'
     img.save(final_image_filename)
     shutil.rmtree(tiles_dir)

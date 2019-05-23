@@ -5,6 +5,7 @@ import base64
 import hmac
 import re
 import shutil
+import urllib.parse
 from pathlib import Path
 
 from PIL import Image
@@ -41,7 +42,8 @@ def fetch_tile(path, token, x, y, z):
 def load_image_info(url):
     r = requests.get(url)
 
-    image_slug, image_id = url.split('?')[0].split('/')[-2:]
+    url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
+    image_slug, image_id = url_path.split('/')[-2:]
     image_name = '%s - %s' % (image_slug, image_id)
 
     tree = lxml.html.fromstring(r.text)

@@ -39,66 +39,75 @@ def fetch_tile(path, token, x, y, z):
     return decrypt(r.content)
 
 
-def load_image_info(url):
-    r = requests.get(url)
+class ImageInfo(object):
+    def __init__(self, url):
+        r = requests.get(url)
 
-    url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
-    image_slug, image_id = url_path.split('/')[-2:]
-    image_name = '%s - %s' % (image_slug, image_id)
+        url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
+        image_slug, image_id = url_path.split('/')[-2:]
+        self.image_name = '%s - %s' % (image_slug, image_id)
 
-    tree = lxml.html.fromstring(r.text)
+        tree = lxml.html.fromstring(r.text)
+        image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
+        meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
+        self.tile_width = int(meta_info_tree.attrib['tile_width'])
+        self.tile_height = int(meta_info_tree.attrib['tile_height'])
+        self.tile_info = [ZoomLevelInfo(x.attrib, self) for x in meta_info_tree.xpath('//pyramid_level')]
 
-    image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
+        self.path = image_url.split('/')[3]
 
-    meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
-    tile_info = [{k: int(v) for (k, v) in x.attrib.items()} for x in meta_info_tree.xpath('//pyramid_level')]
+        part = image_url.split(':', 1)[1]
+        token_regex = r'"{}","([^"]+)"'.format(part)
+        self.token = re.findall(token_regex, r.text)[0]
 
-    path = image_url.split('/')[3]
-    part = image_url.split(':', 1)[1]
 
-    token_regex = r'"{}","([^"]+)"'.format(part)
-    token = re.findall(token_regex, r.text)[0]
+class ZoomLevelInfo(object):
+    def __init__(self, attrs, img_info):
+        self.num_tiles_x = int(attrs['num_tiles_x'])
+        self.num_tiles_y = int(attrs['num_tiles_y'])
+        self.empty_x = int(attrs['empty_pels_x'])
+        self.empty_y = int(attrs['empty_pels_y'])
+        self.img_info = img_info
 
-    tile_width = int(meta_info_tree.attrib['tile_width'])
-    tile_height = int(meta_info_tree.attrib['tile_height'])
+    @property
+    def size(self):
+        return (
+            self.num_tiles_x * self.img_info.tile_width - self.empty_x,
+            self.num_tiles_y * self.img_info.tile_height - self.empty_y
+        )
 
-    return tile_info, (tile_width, tile_height), image_name, path, token
+    @property
+    def total_tiles(self):
+        return self.num_tiles_x * self.num_tiles_y
 
 
 def load_tiles(url, z=-1):
-    tile_info, tile_size, image_name, path, token = load_image_info(url)
+    info = ImageInfo(url)
 
-    if z >= len(tile_info):
-        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(tile_info)))
+    if z >= len(info.tile_info):
+        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(info.tile_info)))
         return quit(1)
 
-    z %= len(tile_info)  # keep 0 <= z < len(tile_info)
-    tile = tile_info[z]
-    num_tiles_x = int(tile['num_tiles_x'])
-    num_tiles_y = int(tile['num_tiles_y'])
-    empty_x = int(tile['empty_pels_x'])
-    empty_y = int(tile['empty_pels_y'])
+    z %= len(info.tile_info)  # keep 0 <= z < len(tile_info)
+    level = info.tile_info[z]
 
-    width = num_tiles_x * tile_size[0] - empty_x
-    height = num_tiles_y * tile_size[1] - empty_y
+    img = Image.new(mode="RGB", size=level.size)
 
-    img = Image.new(mode="RGB", size=(width, height))
-
-    tiles_dir = Path(image_name)
+    tiles_dir = Path(info.image_name)
     tiles_dir.mkdir(exist_ok=True)
 
-    for x in range(num_tiles_x):
-        for y in range(num_tiles_y):
-            percent_complete = 100 * (y + x * num_tiles_y) // (num_tiles_y * num_tiles_x)
+    for x in range(level.num_tiles_x):
+        for y in range(level.num_tiles_y):
+            percent_complete = 100 * (y + x * level.num_tiles_y) // level.total_tiles
             print("Downloading: {}%".format(percent_complete), end='\r')
             file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
             if not file_path.exists():
-                tile_bytes = fetch_tile(path, token, x, y, z)
+                tile_bytes = fetch_tile(info.path, info.token, x, y, z)
                 file_path.write_bytes(tile_bytes)
             tile_img = Image.open(file_path)
-            img.paste(tile_img, (x * tile_size[0], y * tile_size[1]))
+            img.paste(tile_img, (x * info.tile_width, y * info.tile_height))
     print("Downloaded all tiles")
-    final_image_filename = image_name + '.jpg'
+    final_image_filename = info.image_name + '.jpg'
     img.save(final_image_filename)
     shutil.rmtree(tiles_dir)
     print("Saved the result as " + final_image_filename)
@@ -117,12 +126,11 @@ def main():
     if args.zoom is not None:
         load_tiles(args.url, args.zoom)
     else:
-        tile_info, _, image_name, path, token = load_image_info(args.url)
+        info = ImageInfo(args.url)
         print('Zoom levels:')
-        for i, level in enumerate(tile_info):
-            print(' %i %i x %i (%i tiles)' % (
-                i, level['num_tiles_x'] * 512, level['num_tiles_y'] * 512,
-                (level['num_tiles_x'] * level['num_tiles_y'])))
+        for i, level in enumerate(info.tile_info):
+            print('{i:2d}: {level.size[0]:6d} x {level.size[1]:6d} ({level.total_tiles:6d} tiles)'.format(
+                i=i, level=level))
 
 
 if __name__ == '__main__':

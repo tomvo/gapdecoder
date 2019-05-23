@@ -33,12 +33,6 @@ def compute_url(path, token, x, y, z):
     return 'https://lh3.googleusercontent.com/%s=x%s-y%s-z%s-t%s' % (path, x, y, z, signature)
 
 
-def fetch_tile(path, token, x, y, z):
-    image_url = compute_url(path, token, x, y, z)
-    r = requests.get(image_url)
-    return decrypt(r.content)
-
-
 class ImageInfo(object):
     def __init__(self, url):
         r = requests.get(url)
@@ -62,6 +56,11 @@ class ImageInfo(object):
         part = image_url.split(':', 1)[1]
         token_regex = r'"{}","([^"]+)"'.format(part)
         self.token = re.findall(token_regex, r.text)[0]
+
+    def fetch_tile(self, x, y, z):
+        image_url = compute_url(self.path, self.token, x, y, z)
+        r = requests.get(image_url)
+        return decrypt(r.content)
 
     def __repr__(self):
         return '{} - zoom levels:\n{}'.format(
@@ -116,7 +115,7 @@ def load_tiles(url, z=-1):
             print("Downloading: {}%".format(percent_complete), end='\r')
             file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
             if not file_path.exists():
-                tile_bytes = fetch_tile(info.path, info.token, x, y, z)
+                tile_bytes = info.fetch_tile(x, y, z)
                 file_path.write_bytes(tile_bytes)
             tile_img = Image.open(file_path)
             img.paste(tile_img, (x * info.tile_width, y * info.tile_height))

@@ -6,13 +6,13 @@ import hmac
 import re
 import shutil
 import urllib.parse
+import urllib.request
 from pathlib import Path
 
 from PIL import Image
 import lxml.html
 
 from lxml import etree
-import requests
 
 from decryption import decrypt
 
@@ -21,29 +21,29 @@ IV = bytes.fromhex("7b2b4e23de2cc5c5")
 
 def compute_url(path, token, x, y, z):
     """
-    >>> path = 'wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ'
-    >>> token = 'KwCgJ1QIfgprHn0a93x7Q-HhJ04'
+    >>> path = b'wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ'
+    >>> token = b'KwCgJ1QIfgprHn0a93x7Q-HhJ04'
     >>> compute_url(path, token, 0, 0, 7)
     'https://lh3.googleusercontent.com/wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ=x0-y0-z7-tHeJ3xylnSyyHPGwMZimI4EV3JP8'
     """
-    sign_path = b'%s=x%d-y%d-z%d-t%s' % (path.encode('utf8'), x, y, z, token.encode('utf8'))
+    sign_path = b'%s=x%d-y%d-z%d-t%s' % (path, x, y, z, token)
     encoded = hmac.new(IV, sign_path, 'sha1').digest()
-    signature_bytes = base64.b64encode(encoded, b'__')[:-1]
-    signature = signature_bytes.decode('utf-8')
-    return 'https://lh3.googleusercontent.com/%s=x%s-y%s-z%s-t%s' % (path, x, y, z, signature)
+    signature = base64.b64encode(encoded, b'__')[:-1]
+    url_bytes = b'https://lh3.googleusercontent.com/%s=x%d-y%d-z%d-t%s' % (path, x, y, z, signature)
+    return url_bytes.decode('utf-8')
 
 
 class ImageInfo(object):
     def __init__(self, url):
-        r = requests.get(url)
+        page_source = urllib.request.urlopen(url).read()
 
         url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
         self.image_slug, image_id = url_path.split('/')[-2:]
         self.image_name = '%s - %s' % (self.image_slug, image_id)
 
-        tree = lxml.html.fromstring(r.text)
+        tree = lxml.html.fromstring(page_source)
         image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
-        meta_info_tree = etree.fromstring(requests.get(image_url + '=g').content)
+        meta_info_tree = etree.fromstring(urllib.request.urlopen(image_url + '=g').read())
         self.tile_width = int(meta_info_tree.attrib['tile_width'])
         self.tile_height = int(meta_info_tree.attrib['tile_height'])
         self.tile_info = [
@@ -51,16 +51,16 @@ class ImageInfo(object):
             for i, attrs in enumerate(meta_info_tree.xpath('//pyramid_level'))
         ]
 
-        self.path = image_url.split('/')[3]
+        self.path = image_url.split('/')[3].encode('utf-8')
 
-        part = image_url.split(':', 1)[1]
-        token_regex = r'"{}","([^"]+)"'.format(part)
-        self.token = re.findall(token_regex, r.text)[0]
+        part = image_url.split(':', 1)[1].encode('utf-8')
+        token_regex = rb'"%s","([^"]+)"' % (part,)
+        self.token = re.findall(token_regex, page_source)[0]
 
     def fetch_tile(self, x, y, z):
         image_url = compute_url(self.path, self.token, x, y, z)
-        r = requests.get(image_url)
-        return decrypt(r.content)
+        encrypted_bytes = urllib.request.urlopen(image_url).read()
+        return decrypt(encrypted_bytes)
 
     def __repr__(self):
         return '{} - zoom levels:\n{}'.format(

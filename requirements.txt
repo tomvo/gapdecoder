@@ -1,4 +1,3 @@
 pycryptodome
 lxml
-requests
 Pillow

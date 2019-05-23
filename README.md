@@ -17,7 +17,7 @@ pip3 install -r requirements.txt
 Then, run the code
 
 ```bash
-python3 tile_fetch.py --zoom 4 'https://artsandculture.google.com/asset/the-water-carrier-la-aguadora/UwE2fGsMlWHuMg'
+python3 tile_fetch.py --zoom 4 "https://artsandculture.google.com/asset/the-water-carrier-la-aguadora/UwE2fGsMlWHuMg"
 ```
 
 You can of course change the zoom level and the URL.

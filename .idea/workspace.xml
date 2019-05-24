@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2c01687-4b15-434d-aab8-8ffd3c3fe901" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/decryption.py" beforeDir="false" afterPath="$PROJECT_DIR$/decryption.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/decryption.js" beforeDir="false" afterPath="$PROJECT_DIR$/decryption.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subtle.js" beforeDir="false" afterPath="$PROJECT_DIR$/subtle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.js" beforeDir="false" />
     </list>
     <list id="7d21c4d8-1052-4ecf-bb9e-0abf691c62d4" name="Fix names" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,7 +23,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tile_fetch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
+            <state relative-caret-position="3048">
               <caret line="140" selection-start-line="140" selection-end-line="140" />
               <folding>
                 <element signature="e#40#53#0" expanded="true" />
@@ -52,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/decryption.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+            <state relative-caret-position="984">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="e#39#52#0" expanded="true" />
               </folding>
@@ -64,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
+            <state relative-caret-position="288">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
@@ -127,8 +131,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="x" value="1680" />
+    <option name="y" value="-834" />
+    <option name="width" value="1080" />
+    <option name="height" value="1920" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -136,13 +142,17 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
               <item name="gapdecoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gapdecoder" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
@@ -157,10 +167,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -632,9 +644,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Doctests_in_tile_fetch - 2019.05.23 at 13h 32m 17s.xml">
-      <configuration name="Doctests in tile_fetch" configurationId="tests" />
-    </history-entry>
     <history-entry file="Doctests_in_tile_fetch - 2019.05.24 at 10h 55m 12s.xml">
       <configuration name="Doctests in tile_fetch" configurationId="tests" />
     </history-entry>
@@ -662,6 +671,9 @@
     <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 25m 46s.xml">
       <configuration name="Doctests in decryption" configurationId="tests" />
     </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 15h 41m 36s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -673,10 +685,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="1680" y="-834" width="1080" height="1920" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.259828" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21011673" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -686,12 +698,12 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298647" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3298647" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3992354" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3298647" />
       <window_info anchor="bottom" id="Docker" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.46097815" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.2419443" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.3298647" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -774,8 +786,54 @@
     <MESSAGE value="Let the user pick the output file name" />
     <option name="LAST_COMMIT_MESSAGE" value="Let the user pick the output file name" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/decryption.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>aes_decrypt_buffer(encrypted).hex()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>encrypted.hex()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>aes_decrypt_buffer(encrypted)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>list(encrypted)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>image</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>image = open(&quot;test/ciphered_tile.bin&quot;, 'rb').read()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>image = open(&quot;test/ciphered_tile.bin&quot;).read()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>urllib.parse.urlparse(&quot;http://a.b/h%3a/ho&quot;)</expression-string>
         <language-id>Python</language-id>
@@ -786,45 +844,9 @@
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>urllib.parse.urlparse(url).path</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>url</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>meta_info_tree.attrib['tile_height']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>meta_info_tree.attrib['tile_width']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>meta_info_tree</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>meta_info_tree.attrs['tile_width']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>meta_info_tree.attr['tile_width']</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x35x7.jpg" />
     <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x37x7.jpg" />
     <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x11x7.jpg" />
     <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x36x7.jpg" />
@@ -904,7 +926,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tile_fetch.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
+        <state relative-caret-position="3048">
           <caret line="140" selection-start-line="140" selection-end-line="140" />
           <folding>
             <element signature="e#40#53#0" expanded="true" />
@@ -931,7 +953,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
+        <state relative-caret-position="288">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
@@ -939,10 +961,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/decryption.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/decryption.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+        <state relative-caret-position="984">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#39#52#0" expanded="true" />
           </folding>

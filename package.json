@@ -4,7 +4,7 @@
   "description": "Decode images from google arts and culture",
   "main": "decryption.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",

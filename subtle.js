@@ -13,4 +13,11 @@ async function decrypt({ iv }, key, buffer) {
     return Buffer.concat([out, final]);
 }
 
-module.exports = { importKey, decrypt }
+async function encrypt({ iv }, key, buffer) {
+    const cipher = crypto.createCipheriv("aes-128-cbc", key, iv);
+    const out = cipher.update(buffer);
+    const final = cipher.final()
+    return Buffer.concat([out, final]);
+}
+
+module.exports = { importKey, decrypt, encrypt }

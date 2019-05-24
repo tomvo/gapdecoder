@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d2c01687-4b15-434d-aab8-8ffd3c3fe901" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/decryption.py" beforeDir="false" afterPath="$PROJECT_DIR$/decryption.py" afterDir="false" />
+    </list>
+    <list id="7d21c4d8-1052-4ecf-bb9e-0abf691c62d4" name="Fix names" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tile_fetch.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="140" selection-start-line="140" selection-end-line="140" />
+              <folding>
+                <element signature="e#40#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="456">
+                <caret line="19" column="117" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="117" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/decryption.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+              <folding>
+                <element signature="e#39#52#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>magic_3</find>
+      <find>52096A</find>
+      <find>Gmul</find>
+      <find>def __init</find>
+      <find>gmul</find>
+      <find>9121</find>
+      <find>tuple</find>
+      <find>key_sche</find>
+      <find>5b</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>magics[2]</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/aes.py" />
+        <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/tile_fetch.py" />
+        <option value="$PROJECT_DIR$/decryption.py" />
+      </list>
+    </option>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="lGJSvLax" />
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/gapdecoder.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gapdecoder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gapdecoder" type="462c0819:PsiDirectoryNode" />
+              <item name="tiles" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gapdecoder" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python tests.Doctests in decryption">
+    <configuration name="aes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/aes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="decryption" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/decryption.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tile_fetch show levels" type="PythonConfigurationType" factoryName="Python">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tile_fetch.py" />
+      <option name="PARAMETERS" value="https://artsandculture.google.com/asset/the-fall-of-the-rebel-angels/ewEs_8lOXkz7tQ" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tile_fetch" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tile_fetch.py" />
+      <option name="PARAMETERS" value="--zoom=2 https://artsandculture.google.com/asset/the-fall-of-the-rebel-angels/ewEs_8lOXkz7tQ" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Doctests in decryption" type="tests" factoryName="Doctests" nameIsGenerated="true">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/decryption.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="*.py" />
+      <option name="USE_PATTERN" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Doctests in tile_fetch" type="tests" factoryName="Doctests" nameIsGenerated="true">
+      <module name="gapdecoder" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tile_fetch.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="$PROJECT_DIR$" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="*.py" />
+      <option name="USE_PATTERN" value="true" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.tile_fetch show levels" />
+      <item itemvalue="Python.tile_fetch" />
+      <item itemvalue="Python.aes" />
+      <item itemvalue="Python.decryption" />
+      <item itemvalue="Python tests.Doctests in tile_fetch" />
+      <item itemvalue="Python tests.Doctests in decryption" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.tile_fetch" />
+        <item itemvalue="Python.decryption" />
+        <item itemvalue="Python.aes" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d2c01687-4b15-434d-aab8-8ffd3c3fe901" name="Default Changelist" comment="" />
+      <changelist id="7d21c4d8-1052-4ecf-bb9e-0abf691c62d4" name="Fix names" comment="" />
+      <created>1558439725729</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558439725729</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add the tile @JohnDoee 's tile fetcher&#10;&#10;See https://gist.github.com/JohnDoee/6498557f0cd615a6c2845153e5660d68">
+      <created>1558440107594</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558440107594</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Minor readability improvement">
+      <created>1558442329023</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558442329023</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Simplify the encode_string function">
+      <created>1558444523685</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558444523685</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add doctests">
+      <created>1558445246880</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1558445246880</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Readability">
+      <created>1558445274526</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1558445274526</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Readability">
+      <created>1558445391657</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1558445391657</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add a doctest">
+      <created>1558446045097</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1558446045097</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Reformat decryption.py&#10;&#10;Use hex for large binary vectors">
+      <created>1558447700710</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1558447700710</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Simplify split bytes xoring code">
+      <created>1558449903922</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1558449903922</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Simplify split bytes xoring code">
+      <created>1558450973530</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1558450973530</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Simplify get_new_bytes logic">
+      <created>1558453676184</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1558453676184</updated>
+    </task>
+    <task id="LOCAL-00012" summary="More code cleanup">
+      <created>1558458221782</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1558458221782</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add doctests to help with debugging">
+      <created>1558511060739</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1558511060739</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add doctests to help with debugging">
+      <created>1558511137487</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1558511137487</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Rename variables and functions to use AES terms">
+      <created>1558515611267</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1558515611267</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Simplify get_new_bytes">
+      <created>1558515884266</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1558515884266</updated>
+    </task>
+    <task id="LOCAL-00017" summary="More AES terms and calculations&#10;&#10;Compute the magics table dynamically. The algorithm is from AES">
+      <created>1558518312441</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1558518312441</updated>
+    </task>
+    <task id="LOCAL-00018" summary="use bytes instead of lists">
+      <created>1558524313445</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1558524313445</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Use more bytes">
+      <created>1558524380921</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1558524380921</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fix names">
+      <created>1558524672173</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1558524672173</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Use a standard AES library for tile decryption">
+      <created>1558527603825</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1558527603825</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Simplify decrypt(image)">
+      <created>1558530476841</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1558530476841</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Simplify decrypt(image)">
+      <created>1558530881780</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1558530881780</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Simplify decrypt(image)">
+      <created>1558531840483</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1558531840483</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add a doctest in tile_fetch">
+      <created>1558533267913</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1558533267913</updated>
+    </task>
+    <task id="LOCAL-00026" summary="simplify base64 encoding">
+      <created>1558533391785</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1558533391785</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Use the HMAC function from stdlib instead of reimplementing it">
+      <created>1558534062231</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1558534062231</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Implement tile stitching">
+      <created>1558536932235</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1558536932235</updated>
+    </task>
+    <task id="LOCAL-00029" summary="More helpful message on invalid zoom level">
+      <created>1558538683027</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1558538683027</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Improve the README">
+      <created>1558540154318</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1558540154318</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Work with negative zoom levels and maximum zoom level&#10;&#10;Fixes https://github.com/expenses/gapdecoder/pull/1#discussion_r286560040">
+      <created>1558540622347</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1558540622347</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Default to the maximum zoom level">
+      <created>1558540745422</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1558540745422</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Download individual tiles in a separate folder and remove them afterwards">
+      <created>1558605223470</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1558605223470</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Fix a bug with image names that contain non-ascii characters">
+      <created>1558605752973</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1558605752973</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Fix a bug with image names that contain non-ascii characters">
+      <created>1558605943619</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1558605943619</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Remove the old non-working code">
+      <created>1558606404283</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1558606404283</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Separate meta-information extraction and tile fetching logic">
+      <created>1558608441454</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1558608441454</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Separate meta-information extraction and tile fetching logic">
+      <created>1558609278512</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1558609278512</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Move fetch_tiles to method">
+      <created>1558609827757</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1558609827757</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Remove dependency to requests">
+      <created>1558611180214</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1558611180214</updated>
+    </task>
+    <task id="LOCAL-00041" summary="More explicit logging">
+      <created>1558611343457</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1558611343457</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Use double quotes in the README example">
+      <created>1558615704676</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1558615704676</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Let the user pick the output file name">
+      <created>1558624736179</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1558624736179</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Doctests_in_tile_fetch - 2019.05.23 at 13h 32m 17s.xml">
+      <configuration name="Doctests in tile_fetch" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_tile_fetch - 2019.05.24 at 10h 55m 12s.xml">
+      <configuration name="Doctests in tile_fetch" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 10h 55m 17s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 03m 13s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 14m 19s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 18m 13s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 19m 07s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 23m 26s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 25m 30s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Doctests_in_decryption - 2019.05.24 at 11h 25m 46s.xml">
+      <configuration name="Doctests in decryption" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.259828" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298647" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298647" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39958376" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3298647" />
+      <window_info anchor="bottom" id="Docker" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.46097815" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3298647" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Cargo" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rename variables and functions to use AES terms" />
+    <MESSAGE value="Simplify get_new_bytes" />
+    <MESSAGE value="More AES terms and calculations&#10;&#10;Compute the magics table dynamically. The algorithm is from AES" />
+    <MESSAGE value="use bytes instead of lists" />
+    <MESSAGE value="Use more bytes" />
+    <MESSAGE value="Fix names" />
+    <MESSAGE value="Use a standard AES library for tile decryption" />
+    <MESSAGE value="Simplify decrypt(image)" />
+    <MESSAGE value="Add a doctest in tile_fetch" />
+    <MESSAGE value="simplify base64 encoding" />
+    <MESSAGE value="Use the HMAC function from stdlib instead of reimplementing it" />
+    <MESSAGE value="Implement tile stitching" />
+    <MESSAGE value="More helpful message on invalid zoom level" />
+    <MESSAGE value="Improve the README" />
+    <MESSAGE value="Work with negative zoom levels and maximum zoom level&#10;&#10;Fixes https://github.com/expenses/gapdecoder/pull/1#discussion_r286560040" />
+    <MESSAGE value="Default to the maximum zoom level" />
+    <MESSAGE value="Download individual tiles in a separate folder and remove them afterwards" />
+    <MESSAGE value="Fix a bug with image names that contain non-ascii characters" />
+    <MESSAGE value="Remove the old non-working code" />
+    <MESSAGE value="Separate meta-information extraction and tile fetching logic" />
+    <MESSAGE value="Move fetch_tiles to method" />
+    <MESSAGE value="Remove dependency to requests" />
+    <MESSAGE value="More explicit logging" />
+    <MESSAGE value="Use double quotes in the README example" />
+    <MESSAGE value="Let the user pick the output file name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Let the user pick the output file name" />
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>urllib.parse.urlparse(&quot;http://a.b/h%3a/ho&quot;)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>urllib.parse.urlparse(url)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>urllib.parse.urlparse(url).path</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>url</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>meta_info_tree.attrib['tile_height']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>meta_info_tree.attrib['tile_width']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>meta_info_tree</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>meta_info_tree.attrs['tile_width']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>meta_info_tree.attr['tile_width']</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x35x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x37x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x11x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x36x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x39x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x19x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x10x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x12x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/aes.py" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x1x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x5x7.jpg" />
+    <entry file="file://$APPLICATION_PLUGINS_DIR$/python-ce/helpers/pycharm/docrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x3x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x4x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x7x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x13x7.jpg" />
+    <entry file="file:///usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/lib/python3.7/hashlib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-487">
+          <caret line="175" column="8" selection-start-line="175" selection-start-column="8" selection-end-line="175" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x0x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x6x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x9x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x2x7.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 3x3x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 2x0x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 2x4x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 1x5x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 3x5x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x1x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x0x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 0x2x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 1x1x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 1x0x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 1x2x2.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ 2x2x4.jpg" />
+    <entry file="file://$PROJECT_DIR$/lady-with-an-ermine - HwHUpggDy_HxNQ.jpg" />
+    <entry file="file:///usr/local/lib/python3.7/site-packages/requests/sessions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="730" selection-start-line="730" selection-end-line="730" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.7/site-packages/requests/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/the-fall-of-the-rebel-angels - ewEs_8lOXkz7tQ 0x0x6.jpg" />
+    <entry file="file://$PROJECT_DIR$/the-fall-of-the-rebel-angels - ewEs_8lOXkz7tQ.jpg" />
+    <entry file="file://$PROJECT_DIR$/tiles/marat-assassin%C3%A9 - 7QGjl9R141MCBw.jpg" />
+    <entry file="file://$PROJECT_DIR$/old/extraction.py" />
+    <entry file="file://$PROJECT_DIR$/tiles/marat-assassin%C3%A9 - 7QGjl9R141MCBw/0x2x3.jpg" />
+    <entry file="file://$PROJECT_DIR$/old/images.txt" />
+    <entry file="file://$PROJECT_DIR$/tiles/asset - aAFfvNhzfAE1CA.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiles/marat-assassiné - 7QGjl9R141MCBw.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiles/the-water-carrier-la-aguadora - UwE2fGsMlWHuMg.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tiles/out.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tile_fetch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
+          <folding>
+            <element signature="e#40#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="456">
+            <caret line="19" column="117" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="117" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/decryption.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
+          <folding>
+            <element signature="e#39#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>Python 2.7 (assets)</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.32982457" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

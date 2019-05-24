@@ -9,8 +9,9 @@ aes_iv = bytes.fromhex('71e70405353a778bfa6fbc30321b9592')
 
 def aes_decrypt_buffer(buffer):
     """
-    >>> aes_decrypt_buffer(b"0123456789abcdef"*2).hex()
-    'a35fd5bfdb47815bcbe4b39e596a9358e289e389da48c0e709b26ecc081563ac'
+    >>> encrypted = bytes.fromhex("e5c820455856b03589de7809179dda78ce2b41b9b6db85d325cea350d02babe0")
+    >>> aes_decrypt_buffer(encrypted).hex()
+    '010101010c0c0c0c0c0c0c0c0c0c0c0c'
     """
     cipher = AES.new(aes_key, AES.MODE_CBC, iv=aes_iv)
     return cipher.decrypt(buffer)

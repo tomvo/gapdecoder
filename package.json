@@ -1,0 +1,20 @@
+{
+  "name": "gapdecoder",
+  "version": "0.0.1",
+  "description": "Decode images from google arts and culture",
+  "main": "decryption.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/expenses/gapdecoder.git"
+  },
+  "author": "@lovasoa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/expenses/gapdecoder/issues"
+  },
+  "homepage": "https://github.com/expenses/gapdecoder#readme",
+  "dependencies": {}
+}

@@ -1,4 +1,5 @@
 const subtle = (typeof crypto === 'undefined') ? require("./subtle.js") : crypto.subtle;
+btoa = (typeof btoa === 'undefined') ? require("./btoa.js") : btoa;
 
 function fromhex(h) {
     return Uint8Array.from(h.match(/[0-9a-fA-F]{2}/g).map(x => parseInt(x, 16)))
@@ -56,6 +57,30 @@ async function decrypt_image({ buffer }) {
     return concat(clear_prefix, await aes_decrypt_buffer(encrypted), clear_suffix);
 }
 
+function make_path(path, token, x, y, z) {
+    return path + '=x' + x + '-y' + y + '-z' + z + '-t' + token;
+}
+
+function base64_encode(buf) {
+    return btoa(String.fromCharCode.apply(null, buf));
+}
+
+const hmac_key_promise = subtle.importKey("raw", fromhex('7b2b4e23de2cc5c5'), { name: "HMAC", hash: "SHA-1" }, true, ["sign"]);
+
+async function compute_signed_path(path, token, x, y, z) {
+    const sign_path = make_path(path, token, x, y, z);
+    const key = await hmac_key_promise;
+    const buf = new TextEncoder("utf-8").encode(sign_path);
+    const encoded = await subtle.sign("HMAC", key, buf);
+    let signature = base64_encode(encoded).replace(/\+|\//g, '_').replace(/=/, '');
+    return make_path(path, signature, x, y, z);
+}
+
 if (typeof module !== "undefined") {
-    module.exports = { aes_decrypt_buffer, decrypt_image, fromhex, tohex }
+    module.exports = {
+        aes_decrypt_buffer,
+        decrypt_image,
+        compute_signed_path,
+        fromhex, tohex
+    }
 }

@@ -1,4 +1,9 @@
-const { aes_decrypt_buffer, decrypt_image, fromhex, tohex } = require("../decryption.js");
+const {
+    aes_decrypt_buffer, decrypt_image,
+    compute_signed_path,
+    fromhex, tohex
+} = require("../decryption.js");
+
 const assert = require("assert");
 const fs = require('fs').promises;
 
@@ -33,6 +38,14 @@ async function test_decrypt_real_tile() {
     assert.equal(tohex(expected), tohex(clear));
 }
 
+async function test_compute_signature() {
+    const path = 'wGcDNN8L-2COcm9toX5BTp6HPxpMPPPuxrMU-ZL-W-nDHW8I_L4R5vlBJ6ITtlmONQ'
+    const token = 'KwCgJ1QIfgprHn0a93x7Q-HhJ04';
+    const result = await compute_signed_path(path, token, 0, 0, 7)
+    assert.equal(path + '=x0-y0-z7-tHeJ3xylnSyyHPGwMZimI4EV3JP8', result);
+
+}
 test_aes_decrypt_buffer();
 test_decrypt_image();
 test_decrypt_real_tile();
+test_compute_signature();

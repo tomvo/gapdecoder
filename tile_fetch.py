@@ -99,7 +99,7 @@ def load_tiles(url, z=-1, outfile=None):
     info = ImageInfo(url)
 
     if z >= len(info.tile_info):
-        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(info.tile_info)))
+        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(info.tile_info) - 1))
         return quit(1)
 
     z %= len(info.tile_info)  # keep 0 <= z < len(tile_info)

@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+import asyncio
 import base64
 import hmac
+import io
+import itertools
 import re
 import shutil
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
+import aiohttp
 from PIL import Image
 import lxml.html
 
 from lxml import etree
 
 from decryption import decrypt
+import async_tile_fetcher
 
 IV = bytes.fromhex("7b2b4e23de2cc5c5")
 
@@ -57,10 +61,8 @@ class ImageInfo(object):
         token_regex = rb'"%s","([^"]+)"' % (part,)
         self.token = re.findall(token_regex, page_source)[0]
 
-    def fetch_tile(self, x, y, z):
-        image_url = compute_url(self.path, self.token, x, y, z)
-        encrypted_bytes = urllib.request.urlopen(image_url).read()
-        return decrypt(encrypted_bytes)
+    def url(self, x, y, z):
+        return compute_url(self.path, self.token, x, y, z)
 
     def __repr__(self):
         return '{} - zoom levels:\n{}'.format(
@@ -94,7 +96,14 @@ class ZoomLevelInfo(object):
             level=self)
 
 
-def load_tiles(url, z=-1, outfile=None):
+async def fetch_tile(session, image_info, tiles_dir, x, y, z):
+    file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
+    image_url = image_info.url(x, y, z)
+    encrypted_bytes = await async_tile_fetcher.fetch(session, image_url, file_path)
+    return x, y, encrypted_bytes
+
+
+async def load_tiles(url, z=-1, outfile=None):
     print("Downloading image meta-information...")
     info = ImageInfo(url)
 
@@ -110,16 +119,21 @@ def load_tiles(url, z=-1, outfile=None):
     tiles_dir = Path(info.image_name)
     tiles_dir.mkdir(exist_ok=True)
 
-    for x in range(level.num_tiles_x):
-        for y in range(level.num_tiles_y):
-            percent_complete = 100 * (y + x * level.num_tiles_y) // level.total_tiles
-            print("Downloading tiles: {:3d}%".format(percent_complete), end='\r')
-            file_path = tiles_dir / ('%sx%sx%s.jpg' % (x, y, z))
-            if not file_path.exists():
-                tile_bytes = info.fetch_tile(x, y, z)
-                file_path.write_bytes(tile_bytes)
-            tile_img = Image.open(file_path)
-            img.paste(tile_img, (x * info.tile_width, y * info.tile_height))
+    async with aiohttp.ClientSession() as session:
+        awaitable_tiles = [
+            fetch_tile(session, info, tiles_dir, x, y, z)
+            for (x, y) in itertools.product(
+                range(level.num_tiles_x),
+                range(level.num_tiles_y))
+        ]
+        print("Downloading tiles...")
+        tiles = await async_tile_fetcher.gather_progress(awaitable_tiles)
+
+    for x, y, encrypted_bytes in tiles:
+        clear_bytes = decrypt(encrypted_bytes)
+        tile_img = Image.open(io.BytesIO(clear_bytes))
+        img.paste(tile_img, (x * info.tile_width, y * info.tile_height))
+
     print("Downloaded all tiles. Saving...")
     final_image_filename = outfile or (info.image_name + '.jpg')
     img.save(final_image_filename)
@@ -142,7 +156,9 @@ def main():
     if args.zoom is None:
         print(ImageInfo(args.url))
     else:
-        load_tiles(args.url, args.zoom, args.outfile)
+        coro = load_tiles(args.url, args.zoom, args.outfile)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(coro)
 
 
 if __name__ == '__main__':

@@ -12,13 +12,12 @@ import urllib.request
 from pathlib import Path
 
 import aiohttp
-from PIL import Image
 import lxml.html
-
+from PIL import Image
 from lxml import etree
 
-from decryption import decrypt
 import async_tile_fetcher
+from decryption import decrypt
 
 IV = bytes.fromhex("7b2b4e23de2cc5c5")
 
@@ -108,8 +107,13 @@ async def load_tiles(url, z=-1, outfile=None):
     info = ImageInfo(url)
 
     if z >= len(info.tile_info):
-        print('Invalid zoom level %d. The maximum zoom level is %d' % (z, len(info.tile_info) - 1))
-        return quit(1)
+        print(
+            'Invalid zoom level {z}. '
+            'The maximum zoom level is {max}, using that instead.'.format(
+                z=z,
+                max=len(info.tile_info) - 1)
+        )
+        z = len(info.tile_info) - 1
 
     z %= len(info.tile_info)  # keep 0 <= z < len(tile_info)
     level = info.tile_info[z]

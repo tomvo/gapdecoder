@@ -6,6 +6,10 @@ This project aims at making it possible to download images from
 
 ## How to use
 
+> **Note** : If you are not comfortable with installing a scripting language on your computer, you can use instead of gapdecoder:
+> - [dezoomify](https://ophir.alwaysdata.net/dezoomify/dezoomify.html), which can be used online without downloading anything to your computer, but limits the maximum size of downloaded images. 
+> - [dezoomify-rs](https://github.com/lovasoa/dezoomify-rs#dezoomify-rs), which comes as ready-to-use executable. 
+
 
 First, install [python 3](https://www.python.org/) on your system,
 and install the dependencies:

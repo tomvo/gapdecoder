@@ -57,7 +57,7 @@ class ImageInfo(object):
         self.path = image_url.split('/')[3].encode('utf-8')
 
         part = image_url.split(':', 1)[1].encode('utf-8')
-        token_regex = rb'"%s","([^"]+)"' % (part,)
+        token_regex = rb']\n,"%s","([^"]+)"' % (part,)
         self.token = re.findall(token_regex, page_source)[0]
 
     def url(self, x, y, z):

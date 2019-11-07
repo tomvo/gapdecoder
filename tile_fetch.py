@@ -12,7 +12,6 @@ import urllib.request
 from pathlib import Path
 
 import aiohttp
-import lxml.html
 from PIL import Image
 from lxml import etree
 
@@ -37,29 +36,28 @@ def compute_url(path, token, x, y, z):
 
 
 class ImageInfo(object):
-    SOURCE_REGEX = re.compile(rb']\n,"//[^"/]+/([^"/]+)",(?:"([^"]+)"|null)', re.MULTILINE)
+    RE_URL_PATH_TOKEN = re.compile(rb']\n,"(//[^"/]+/([^"/]+))",(?:"([^"]+)"|null)', re.MULTILINE)
 
     def __init__(self, url):
         page_source = urllib.request.urlopen(url).read()
+
+        match = self.RE_URL_PATH_TOKEN.search(page_source)
+        if match is None:
+            raise ValueError("Unable to find google arts image token")
+        url_no_proto, self.path, self.token = match.groups()
 
         url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
         self.image_slug, image_id = url_path.split('/')[-2:]
         self.image_name = '%s - %s' % (self.image_slug, image_id)
 
-        tree = lxml.html.fromstring(page_source)
-        image_url = tree.xpath("//meta[@property='og:image']/@content")[0]
-        meta_info_tree = etree.fromstring(urllib.request.urlopen(image_url + '=g').read())
+        meta_info_url = "https:{}=g".format(url_no_proto.decode('utf8'))
+        meta_info_tree = etree.fromstring(urllib.request.urlopen(meta_info_url).read())
         self.tile_width = int(meta_info_tree.attrib['tile_width'])
         self.tile_height = int(meta_info_tree.attrib['tile_height'])
         self.tile_info = [
             ZoomLevelInfo(self, i, attrs.attrib)
             for i, attrs in enumerate(meta_info_tree.xpath('//pyramid_level'))
         ]
-
-        match = self.SOURCE_REGEX.search(page_source)
-        if match is None:
-            raise ValueError("Unable to find google arts image token")
-        self.path, self.token = match.groups()
 
     def url(self, x, y, z):
         return compute_url(self.path, self.token, x, y, z)

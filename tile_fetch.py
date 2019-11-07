@@ -37,6 +37,8 @@ def compute_url(path, token, x, y, z):
 
 
 class ImageInfo(object):
+    SOURCE_REGEX = re.compile(rb']\n,"//[^"/]+/([^"/]+)",(?:"([^"]+)"|null)', re.MULTILINE)
+
     def __init__(self, url):
         page_source = urllib.request.urlopen(url).read()
 
@@ -54,11 +56,10 @@ class ImageInfo(object):
             for i, attrs in enumerate(meta_info_tree.xpath('//pyramid_level'))
         ]
 
-        self.path = image_url.split('/')[3].encode('utf-8')
-
-        part = image_url.split(':', 1)[1].encode('utf-8')
-        token_regex = rb']\n,"%s","([^"]+)"' % (part,)
-        self.token = re.findall(token_regex, page_source)[0]
+        match = self.SOURCE_REGEX.search(page_source)
+        if match is None:
+            raise ValueError("Unable to find google arts image token")
+        self.path, self.token = match.groups()
 
     def url(self, x, y, z):
         return compute_url(self.path, self.token, x, y, z)

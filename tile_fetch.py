@@ -7,6 +7,7 @@ import io
 import itertools
 import re
 import shutil
+import string
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -48,7 +49,7 @@ class ImageInfo(object):
 
         url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
         self.image_slug, image_id = url_path.split('/')[-2:]
-        self.image_name = '%s - %s' % (self.image_slug, image_id)
+        self.image_name = '%s - %s' % (string.capwords(self.image_slug.replace("-"," ")), image_id)
 
         meta_info_url = "https:{}=g".format(url_no_proto.decode('utf8'))
         meta_info_tree = etree.fromstring(urllib.request.urlopen(meta_info_url).read())
@@ -101,7 +102,7 @@ async def fetch_tile(session, image_info, tiles_dir, x, y, z):
     return x, y, encrypted_bytes
 
 
-async def load_tiles(info, z=-1, outfile=None):
+async def load_tiles(info, z=-1, outfile=None, quality=90):
     if z >= len(info.tile_info):
         print(
             'Invalid zoom level {z}. '
@@ -136,7 +137,7 @@ async def load_tiles(info, z=-1, outfile=None):
 
     print("Downloaded all tiles. Saving...")
     final_image_filename = outfile or (info.image_name + '.jpg')
-    img.save(final_image_filename)
+    img.save(final_image_filename, quality=quality, subsampling=0)
     shutil.rmtree(tiles_dir)
     print("Saved the result as " + final_image_filename)
 
@@ -150,6 +151,8 @@ def main():
                         help='Zoom level to fetch, can be negative. Will print zoom levels if omitted')
     parser.add_argument('--outfile', type=str, nargs='?',
                         help='The name of the file to create.')
+    parser.add_argument('--quality', type=int, nargs='?', default='90',
+                        help='Compression level from 0-95. Higher is better.')
     args = parser.parse_args()
 
     url = args.url or input("Enter the url of the image: ")
@@ -168,7 +171,7 @@ def main():
             except (ValueError, AssertionError):
                 print("Not a valid zoom level.")
 
-    coro = load_tiles(image_info, zoom, args.outfile)
+    coro = load_tiles(image_info, zoom, args.outfile, args.quality)
     loop = asyncio.get_event_loop()
     loop.run_until_complete(coro)
 

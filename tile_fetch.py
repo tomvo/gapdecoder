@@ -151,7 +151,7 @@ def main():
                         help='Zoom level to fetch, can be negative. Will print zoom levels if omitted')
     parser.add_argument('--outfile', type=str, nargs='?',
                         help='The name of the file to create.')
-    parser.add_argument('--quality', type=int, nargs='?', default='90',
+    parser.add_argument('--quality', type=int, nargs='?', default=90,
                         help='Compression level from 0-95. Higher is better.')
     args = parser.parse_args()
 

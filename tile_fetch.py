@@ -155,6 +155,7 @@ def main():
                         help='Compression level from 0-95. Higher is better.')
     args = parser.parse_args()
 
+    assert 0 <= args.quality <= 95, "Image quality must be between 0 and 95"
     url = args.url or input("Enter the url of the image: ")
 
     print("Downloading image meta-information...")

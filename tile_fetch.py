@@ -37,7 +37,7 @@ def compute_url(path, token, x, y, z):
 
 
 class ImageInfo(object):
-    RE_URL_PATH_TOKEN = re.compile(rb']\n,"(//[^"/]+/([^"/]+))",(?:"([^"]+)"|null)', re.MULTILINE)
+    RE_URL_PATH_TOKEN = re.compile(rb']\r?\n,"(//[^"/]+/[^"/]+)",(?:"([^"]+)"|null)', re.MULTILINE)
 
     def __init__(self, url):
         page_source = urllib.request.urlopen(url).read()
@@ -45,8 +45,10 @@ class ImageInfo(object):
         match = self.RE_URL_PATH_TOKEN.search(page_source)
         if match is None:
             raise ValueError("Unable to find google arts image token")
-        url_no_proto, self.path, self.token = match.groups()
-
+        url_no_proto, token = match.groups()
+        assert url_no_proto, "Unable to extract required information from the page"
+        self.path = url_no_proto.rsplit(b'/', 1)[1]
+        self.token = token or b''
         url_path = urllib.parse.unquote_plus(urllib.parse.urlparse(url).path)
         self.image_slug, image_id = url_path.split('/')[-2:]
         self.image_name = '%s - %s' % (string.capwords(self.image_slug.replace("-"," ")), image_id)

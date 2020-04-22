@@ -1,0 +1,27 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Python application
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v1
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Test image "the water carrier la aguadora"
+      run: python tile_fetch.py --zoom 1 "https://artsandculture.google.com/asset/the-water-carrier-la-aguadora/UwE2fGsMlWHuMg"
+    - name: Test image "waterloo bridge claude monet"
+      run: python tile_fetch.py --zoom 1 "https://artsandculture.google.com/asset/waterloo-bridge-claude-monet/DwE25c4VOCwboQ"

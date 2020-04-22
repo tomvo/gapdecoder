@@ -15,7 +15,7 @@ First, install [python 3](https://www.python.org/) on your system,
 and install the dependencies:
 
 ```bash
-pip3 install -r requirements.txt 
+python3 -m pip install -r requirements.txt 
 ```
 
 Then, run the code

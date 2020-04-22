@@ -1,7 +1,7 @@
 # GAP decoder
 
 This project aims at making it possible to download images from
-[google art and culture](https://artsandculture.google.com/)
+[google arts and culture](https://artsandculture.google.com/)
 (formerly Google Art Project).
 
 ## How to use
